@@ -20,7 +20,7 @@
 		F7161CB32868972400E010BE /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7161CB22868972400E010BE /* RegistrationController.swift */; };
 		F7161CB52868A80300E010BE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7161CB42868A80300E010BE /* CustomTextField.swift */; };
 		F7161CB72868B8B800E010BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7161CB62868B8B800E010BE /* Extensions.swift */; };
-		F7161CB92868BFD700E010BE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7161CB82868BFD700E010BE /* CustomButton.swift */; };
+		F7161CB92868BFD700E010BE /* AuthenticationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7161CB82868BFD700E010BE /* AuthenticationButton.swift */; };
 		F76344AF284E998000489697 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76344AE284E998000489697 /* FeedCell.swift */; };
 		F76753F2284A8AD30040CB2C /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76753F1284A8AD30040CB2C /* MainTabController.swift */; };
 		F7C7F09F284E70CF0048A0BA /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C7F09E284E70CF0048A0BA /* FeedController.swift */; };
@@ -65,7 +65,7 @@
 		F7161CB22868972400E010BE /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		F7161CB42868A80300E010BE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		F7161CB62868B8B800E010BE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		F7161CB82868BFD700E010BE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F7161CB82868BFD700E010BE /* AuthenticationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationButton.swift; sourceTree = "<group>"; };
 		F76344AE284E998000489697 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		F76753F1284A8AD30040CB2C /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		F7C7F09E284E70CF0048A0BA /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
@@ -123,12 +123,11 @@
 		F709A2ED28491ADE007949EB /* instagram */ = {
 			isa = PBXGroup;
 			children = (
-				F709A32728492808007949EB /* Model */,
-				F709A32628492807007949EB /* View */,
-				F709A32528492806007949EB /* ViewModel */,
-				F709A32428492804007949EB /* Controller */,
-				F709A32328492802007949EB /* Api */,
-				F709A31E284927F0007949EB /* Utils */,
+				F7161CD72868DE6D00E010BE /* Shared */,
+				F7161CD62868DD2600E010BE /* Data */,
+				F7161CD52868DD1D00E010BE /* Domain */,
+				F7161CBB2868D46100E010BE /* Presentation */,
+				F7161CBA2868D45400E010BE /* UI */,
 				F709A2EE28491ADE007949EB /* AppDelegate.swift */,
 				F709A2F028491ADE007949EB /* SceneDelegate.swift */,
 				F709A2F228491ADE007949EB /* ViewController.swift */,
@@ -165,58 +164,251 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F709A32328492802007949EB /* Api */ = {
+		F7161CBA2868D45400E010BE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F709A31E284927F0007949EB /* Utils */,
+				F7161CD22868D81E00E010BE /* Registration */,
+				F7161CCF2868D7FC00E010BE /* Login */,
+				F7161CCC2868D7BE00E010BE /* Profile */,
+				F7161CC92868D79700E010BE /* Notification */,
+				F7161CC62868D76C00E010BE /* ImageSelector */,
+				F7161CC32868D74F00E010BE /* Search */,
+				F7161CC02868D72500E010BE /* Feed */,
+				F7161CBD2868D6A800E010BE /* MainTab */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F7161CBB2868D46100E010BE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Api;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
-		F709A32428492804007949EB /* Controller */ = {
+		F7161CBD2868D6A800E010BE /* MainTab */ = {
 			isa = PBXGroup;
 			children = (
-				F7161CAF286896DB00E010BE /* Authentication */,
+				F7161CBF2868D70A00E010BE /* Components */,
+				F7161CBE2868D6FC00E010BE /* Screen */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		F7161CBE2868D6FC00E010BE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
 				F76753F1284A8AD30040CB2C /* MainTabController.swift */,
-				F7C7F09E284E70CF0048A0BA /* FeedController.swift */,
-				F7C7F0A0284E70E00048A0BA /* SearchController.swift */,
-				F7C7F0A2284E710C0048A0BA /* ImageSelectorController.swift */,
-				F7C7F0A4284E71280048A0BA /* NotificationController.swift */,
-				F7C7F0A6284E71360048A0BA /* ProfileController.swift */,
 			);
-			path = Controller;
+			path = Screen;
 			sourceTree = "<group>";
 		};
-		F709A32528492806007949EB /* ViewModel */ = {
+		F7161CBF2868D70A00E010BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = ViewModel;
+			path = Components;
 			sourceTree = "<group>";
 		};
-		F709A32628492807007949EB /* View */ = {
+		F7161CC02868D72500E010BE /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CC22868D73900E010BE /* Components */,
+				F7161CC12868D73100E010BE /* Screen */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		F7161CC12868D73100E010BE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7F09E284E70CF0048A0BA /* FeedController.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F7161CC22868D73900E010BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				F76344AE284E998000489697 /* FeedCell.swift */,
-				F7161CB42868A80300E010BE /* CustomTextField.swift */,
-				F7161CB82868BFD700E010BE /* CustomButton.swift */,
 			);
-			path = View;
+			path = Components;
 			sourceTree = "<group>";
 		};
-		F709A32728492808007949EB /* Model */ = {
+		F7161CC32868D74F00E010BE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CC52868D75C00E010BE /* Components */,
+				F7161CC42868D75600E010BE /* Screen */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		F7161CC42868D75600E010BE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7F0A0284E70E00048A0BA /* SearchController.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F7161CC52868D75C00E010BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
+			path = Components;
 			sourceTree = "<group>";
 		};
-		F7161CAF286896DB00E010BE /* Authentication */ = {
+		F7161CC62868D76C00E010BE /* ImageSelector */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CC82868D77B00E010BE /* Components */,
+				F7161CC72868D77500E010BE /* Screen */,
+			);
+			path = ImageSelector;
+			sourceTree = "<group>";
+		};
+		F7161CC72868D77500E010BE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7F0A2284E710C0048A0BA /* ImageSelectorController.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F7161CC82868D77B00E010BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F7161CC92868D79700E010BE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CCB2868D7A600E010BE /* Components */,
+				F7161CCA2868D7A100E010BE /* Screen */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		F7161CCA2868D7A100E010BE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7F0A4284E71280048A0BA /* NotificationController.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F7161CCB2868D7A600E010BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F7161CCC2868D7BE00E010BE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CCE2868D7D000E010BE /* Components */,
+				F7161CCD2868D7CA00E010BE /* Screen */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F7161CCD2868D7CA00E010BE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7F0A6284E71360048A0BA /* ProfileController.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F7161CCE2868D7D000E010BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F7161CCF2868D7FC00E010BE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CD12868D80C00E010BE /* Components */,
+				F7161CD02868D80300E010BE /* Screen */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F7161CD02868D80300E010BE /* Screen */ = {
 			isa = PBXGroup;
 			children = (
 				F7161CB0286896FA00E010BE /* LoginController.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F7161CD12868D80C00E010BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F7161CD22868D81E00E010BE /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CD42868D82D00E010BE /* Components */,
+				F7161CD32868D82700E010BE /* Screen */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		F7161CD32868D82700E010BE /* Screen */ = {
+			isa = PBXGroup;
+			children = (
 				F7161CB22868972400E010BE /* RegistrationController.swift */,
 			);
-			path = Authentication;
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		F7161CD42868D82D00E010BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F7161CD52868DD1D00E010BE /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		F7161CD62868DD2600E010BE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F7161CD72868DE6D00E010BE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CD82868DE7C00E010BE /* SharedUI */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F7161CD82868DE7C00E010BE /* SharedUI */ = {
+			isa = PBXGroup;
+			children = (
+				F7161CB42868A80300E010BE /* CustomTextField.swift */,
+				F7161CB82868BFD700E010BE /* AuthenticationButton.swift */,
+			);
+			path = SharedUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +556,7 @@
 				F709A2EF28491ADE007949EB /* AppDelegate.swift in Sources */,
 				F709A2F128491ADE007949EB /* SceneDelegate.swift in Sources */,
 				F7161CB32868972400E010BE /* RegistrationController.swift in Sources */,
-				F7161CB92868BFD700E010BE /* CustomButton.swift in Sources */,
+				F7161CB92868BFD700E010BE /* AuthenticationButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
