@@ -16,8 +16,8 @@
 		F709A30628491AE1007949EB /* instagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F709A30528491AE1007949EB /* instagramTests.swift */; };
 		F709A31028491AE1007949EB /* instagramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F709A30F28491AE1007949EB /* instagramUITests.swift */; };
 		F709A31228491AE1007949EB /* instagramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F709A31128491AE1007949EB /* instagramUITestsLaunchTests.swift */; };
+		F7161CAC286889CC00E010BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7161CAB286889CC00E010BE /* Extensions.swift */; };
 		F76344AF284E998000489697 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76344AE284E998000489697 /* FeedCell.swift */; };
-		F76344B1284E9BE200489697 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76344B0284E9BE200489697 /* Extensions.swift */; };
 		F76753F2284A8AD30040CB2C /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76753F1284A8AD30040CB2C /* MainTabController.swift */; };
 		F7C7F09F284E70CF0048A0BA /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C7F09E284E70CF0048A0BA /* FeedController.swift */; };
 		F7C7F0A1284E70E00048A0BA /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C7F0A0284E70E00048A0BA /* SearchController.swift */; };
@@ -57,8 +57,8 @@
 		F709A30B28491AE1007949EB /* instagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = instagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F709A30F28491AE1007949EB /* instagramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instagramUITests.swift; sourceTree = "<group>"; };
 		F709A31128491AE1007949EB /* instagramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instagramUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F7161CAB286889CC00E010BE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "../../../../../../Volumes/TwinMOS/Uikit-Instagram/Instagram Firestore App Clone  Swift 5 + iOS 14  MVVM/2. Creating Feed User Interface Programatically/Extensions.swift"; sourceTree = "<group>"; };
 		F76344AE284E998000489697 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
-		F76344B0284E9BE200489697 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "../../../../Documents/uikit/2. Creating Feed User Interface Programatically/Extensions.swift"; sourceTree = "<group>"; };
 		F76753F1284A8AD30040CB2C /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		F7C7F09E284E70CF0048A0BA /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		F7C7F0A0284E70E00048A0BA /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 		F709A31E284927F0007949EB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				F76344B0284E9BE200489697 /* Extensions.swift */,
+				F7161CAB286889CC00E010BE /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -337,9 +337,9 @@
 				F7C7F0A1284E70E00048A0BA /* SearchController.swift in Sources */,
 				F709A2F328491ADE007949EB /* ViewController.swift in Sources */,
 				F7C7F0A7284E71360048A0BA /* ProfileController.swift in Sources */,
+				F7161CAC286889CC00E010BE /* Extensions.swift in Sources */,
 				F7C7F09F284E70CF0048A0BA /* FeedController.swift in Sources */,
 				F709A2EF28491ADE007949EB /* AppDelegate.swift in Sources */,
-				F76344B1284E9BE200489697 /* Extensions.swift in Sources */,
 				F709A2F128491ADE007949EB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
