@@ -34,7 +34,7 @@ class RegistrationController: UIViewController {
     
     private let usernameTextField = CustomTextField(placeHolder: "Username")
     
-    private let signUpButton = CustomButton(title: "Sign Up")
+    private let signUpButton = AuthenticationButton(title: "Sign Up")
     
     private lazy var alreadyHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)

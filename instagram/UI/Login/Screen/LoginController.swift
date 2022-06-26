@@ -7,9 +7,10 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+class LoginController: BaseViewController<LoginViewModel> {
     
     // MARK: - Properties
+    
     
     private let iconImage: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
@@ -29,8 +30,9 @@ class LoginController: UIViewController {
         return tf
     }()
     
-    private let loginButton: CustomButton = {
-        let button = CustomButton(title: "Login")
+    private let loginButton: AuthenticationButton = {
+        let button = AuthenticationButton(title: "Login")
+        button.isEnabled = false
         return button
     }()
     
@@ -50,9 +52,11 @@ class LoginController: UIViewController {
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureUI()
+        self.viewModel = LoginViewModel()
+        configureNotificationObservers()
         
+        super.viewDidLoad()
     }
     
     // MARK: - Helpers
@@ -85,11 +89,42 @@ class LoginController: UIViewController {
         dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
+    func configureNotificationObservers(){
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
    
     // MARK: - Actions
 
   @objc  func showSignUp(){
       let controller = RegistrationController()
       navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc  func textDidChange(sender: UITextField){
+        if sender == emailTextField {
+            viewModel?.isEmailValidated = sender.text!.validateEmail()
+        }
+        else {
+            viewModel?.isPasswordValidated = sender.text!.validatePassword()
+        }
+        
+        
+        if (viewModel!.formIsValid) {
+            loginButton.updateLoginButton(isEnabled: true, backgroundColor: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), titleColor: .white)
+        }
+        else{
+            loginButton.updateLoginButton(isEnabled: false, backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5), titleColor: UIColor(white: 1, alpha: 0.67))
+        }
+      }
+   
+}
+
+extension AuthenticationButton {
+    func updateLoginButton(isEnabled: Bool, backgroundColor: UIColor, titleColor: UIColor){
+        self.isEnabled = isEnabled
+        self.backgroundColor = backgroundColor
+        self.setTitleColor(titleColor, for: .normal)
     }
 }
