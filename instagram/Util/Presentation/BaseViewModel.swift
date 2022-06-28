@@ -13,14 +13,14 @@ protocol BaseViewModelProtocol {
     associatedtype U
 }
 
-class BaseViewModel: BaseViewModelProtocol{
-    typealias U = UseCase
+public class BaseViewModel: BaseViewModelProtocol{
+    typealias U = BaseUseCase
     
     var useCase: U?
     var showError: Bool = false
     var isLoading: Bool = false
 
-    init(useCase: U) {
+    init(useCase: U?) {
         self.useCase = useCase
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabController: UITabBarController {
     
@@ -15,7 +16,31 @@ class MainTabController: UITabBarController {
         super.viewDidLoad()
         setOpaque()
         configureViewControllers()
+        checkIfUserIsLoggedIn()
+        //signOutUser()
         
+    }
+    
+    // MARK: - lifecycle
+    
+    func checkIfUserIsLoggedIn(){
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async{
+                let controller = LoginController()
+                let nav = UINavigationController(rootViewController: controller)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func signOutUser(){
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            print("DEBUG: Failed to signout")
+        }
     }
     
     // MARK: - helpers
@@ -73,12 +98,12 @@ class MainTabController: UITabBarController {
             if #available(iOS 15.0, *) {
                 UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
                 navigationBarAppearance.configureWithDefaultBackground()
-                  UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-                  UINavigationBar.appearance().compactAppearance = navigationBarAppearance
-                  UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+                UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+                UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+                UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
             }
         }
-
+        
     }
-            
+    
 }

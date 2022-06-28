@@ -13,6 +13,6 @@ protocol UseCase {
 }
 
 
-protocol SingleUseCase{
-    func start() -> Future<Response?,Exception>
+protocol BaseUseCase{
+    func start() -> Future<Any,Error>
 }

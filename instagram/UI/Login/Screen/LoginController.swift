@@ -30,11 +30,7 @@ class LoginController: BaseViewController<LoginViewModel> {
         return tf
     }()
     
-    private let loginButton: AuthenticationButton = {
-        let button = AuthenticationButton(title: "Login")
-        button.isEnabled = false
-        return button
-    }()
+    private let loginButton: AuthenticationButton = AuthenticationButton(title: "Login")
     
     private let forgotPasswordButton: UIButton = {
         let button = UIButton(type: .system)
@@ -52,8 +48,8 @@ class LoginController: BaseViewController<LoginViewModel> {
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
-        configureUI()
         self.viewModel = LoginViewModel()
+        configureUI()
         configureNotificationObservers()
         
         super.viewDidLoad()
@@ -112,19 +108,13 @@ class LoginController: BaseViewController<LoginViewModel> {
         
         
         if (viewModel!.formIsValid) {
-            loginButton.updateLoginButton(isEnabled: true, backgroundColor: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), titleColor: .white)
+            loginButton.updateAuthenticationButton(isEnabled: true, backgroundColor: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), titleColor: .white)
         }
         else{
-            loginButton.updateLoginButton(isEnabled: false, backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5), titleColor: UIColor(white: 1, alpha: 0.67))
+            loginButton.updateAuthenticationButton(isEnabled: false, backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5), titleColor: UIColor(white: 1, alpha: 0.67))
         }
       }
    
 }
 
-extension AuthenticationButton {
-    func updateLoginButton(isEnabled: Bool, backgroundColor: UIColor, titleColor: UIColor){
-        self.isEnabled = isEnabled
-        self.backgroundColor = backgroundColor
-        self.setTitleColor(titleColor, for: .normal)
-    }
-}
+
