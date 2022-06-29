@@ -11,11 +11,17 @@ import UIKit
 
 extension UIViewController {
     
-    func showAlert(title: String, message: String, completion:  @escaping (UIAlertAction) -> Void) {
+    func showAlert(title: String, message: String, completion:  @escaping (() -> Void?)) {
         let alertController = UIAlertController(title: title, message:
                                                     message, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: "OK".localizedLowercase, style: .default, handler: completion))
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        alertController.addAction(UIAlertAction(title: "OK".localizedLowercase, style: .default, handler: { (alert) -> Void in
+            completion() ?? self.dismiss(animated: true)
+        }))
         
         self.present(alertController, animated: true, completion: nil)
     }

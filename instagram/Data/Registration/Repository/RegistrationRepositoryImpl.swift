@@ -8,16 +8,13 @@
 import Foundation
 
 final class RegistrationRepositoryImpl {
-
+    
     private let registrationRemoteDataSource: RegistrationRemoteDataSource
     private let registrationRequestDomainToDataMapper: RegistrationRequestDomainToDataMapper
     
-    init(
-        remoteDataSource: RegistrationRemoteDataSource,
-        registrationRequestDomainToDataMapper: RegistrationRequestDomainToDataMapper
-    ) {
-        self.registrationRemoteDataSource = remoteDataSource
-        self.registrationRequestDomainToDataMapper = registrationRequestDomainToDataMapper
+    init() {
+        self.registrationRemoteDataSource = RegistrationRemoteDataSource(service: RegistrationService(), registrationRequestDataToApiMapper: RegistrationRequestDataToApiMapper())
+        self.registrationRequestDomainToDataMapper = RegistrationRequestDomainToDataMapper()
     }
 }
 

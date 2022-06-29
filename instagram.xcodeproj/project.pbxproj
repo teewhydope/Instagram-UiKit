@@ -82,6 +82,8 @@
 		F73BEB02286B85A30068E32F /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73BEB01286B85A30068E32F /* UIViewControllerExtension.swift */; };
 		F76344AF284E998000489697 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76344AE284E998000489697 /* FeedCell.swift */; };
 		F76753F2284A8AD30040CB2C /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76753F1284A8AD30040CB2C /* MainTabController.swift */; };
+		F78EF4F2286CA87D00393EA3 /* RegistrationRequestUiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78EF4F1286CA87D00393EA3 /* RegistrationRequestUiModel.swift */; };
+		F78EF4F5286CA8E100393EA3 /* RegistrationRequestUiToPresentationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78EF4F4286CA8E100393EA3 /* RegistrationRequestUiToPresentationMapper.swift */; };
 		F7C7F09F284E70CF0048A0BA /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C7F09E284E70CF0048A0BA /* FeedController.swift */; };
 		F7C7F0A1284E70E00048A0BA /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C7F0A0284E70E00048A0BA /* SearchController.swift */; };
 		F7C7F0A3284E710C0048A0BA /* ImageSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C7F0A2284E710C0048A0BA /* ImageSelectorController.swift */; };
@@ -167,6 +169,8 @@
 		F73BEB01286B85A30068E32F /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		F76344AE284E998000489697 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		F76753F1284A8AD30040CB2C /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		F78EF4F1286CA87D00393EA3 /* RegistrationRequestUiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequestUiModel.swift; sourceTree = "<group>"; };
+		F78EF4F4286CA8E100393EA3 /* RegistrationRequestUiToPresentationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequestUiToPresentationMapper.swift; sourceTree = "<group>"; };
 		F7C7F09E284E70CF0048A0BA /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		F7C7F0A0284E70E00048A0BA /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		F7C7F0A2284E710C0048A0BA /* ImageSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorController.swift; sourceTree = "<group>"; };
@@ -504,6 +508,8 @@
 		F7161CD22868D81E00E010BE /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				F78EF4F3286CA8CC00393EA3 /* Mapper */,
+				F78EF4F0286CA86800393EA3 /* Model */,
 				F7161CD42868D82D00E010BE /* Components */,
 				F7161CD32868D82700E010BE /* Screen */,
 			);
@@ -804,6 +810,22 @@
 			path = Mapper;
 			sourceTree = "<group>";
 		};
+		F78EF4F0286CA86800393EA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F78EF4F1286CA87D00393EA3 /* RegistrationRequestUiModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F78EF4F3286CA8CC00393EA3 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				F78EF4F4286CA8E100393EA3 /* RegistrationRequestUiToPresentationMapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1091,6 +1113,7 @@
 				F7161CDE2868ED8000E010BE /* Response.swift in Sources */,
 				F73BEAED286A659C0068E32F /* RegisterUserUseCase.swift in Sources */,
 				F73BEACD286A33030068E32F /* RegistrationRemoteSource.swift in Sources */,
+				F78EF4F5286CA8E100393EA3 /* RegistrationRequestUiToPresentationMapper.swift in Sources */,
 				F7161CEE2868FB0300E010BE /* BaseViewController.swift in Sources */,
 				F73BEADC286A5B0E0068E32F /* Cancellable.swift in Sources */,
 				F7161CB1286896FA00E010BE /* LoginController.swift in Sources */,
@@ -1116,6 +1139,7 @@
 				F7161CEC2868FACC00E010BE /* BaseViewModel.swift in Sources */,
 				F732898F2869514D001D4E7E /* RegistrationViewModel.swift in Sources */,
 				F709A2F128491ADE007949EB /* SceneDelegate.swift in Sources */,
+				F78EF4F2286CA87D00393EA3 /* RegistrationRequestUiModel.swift in Sources */,
 				F73BEABF2869DD1A0068E32F /* ImageUploader.swift in Sources */,
 				F7161CB32868972400E010BE /* RegistrationController.swift in Sources */,
 				F73BEAF8286B30350068E32F /* RegistrationRequestPresentationToDomainMapper.swift in Sources */,

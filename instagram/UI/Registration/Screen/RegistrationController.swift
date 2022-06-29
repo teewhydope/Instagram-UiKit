@@ -15,6 +15,7 @@ class RegistrationController: BaseViewController<RegistrationViewModel> {
     
     private var profileImage: UIImage?
     var observer: [AnyCancellable] = []
+    private var registrationRequestUiToPresentationMapper: RegistrationRequestUiToPresentationMapper
     
     private lazy var plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -55,12 +56,19 @@ class RegistrationController: BaseViewController<RegistrationViewModel> {
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad(){
-        self.viewModel = RegistrationViewModel()
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.registrationRequestUiToPresentationMapper = RegistrationRequestUiToPresentationMapper()
         
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = RegistrationViewModel()
         configureUI()
         configureNotificationObservers()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - Helpers
     
@@ -91,6 +99,16 @@ class RegistrationController: BaseViewController<RegistrationViewModel> {
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
     
+    func updateButtonState(){
+        viewModel?.isProfileImageSelected = profileImage
+        if (viewModel!.formIsValid) {
+            signUpButton.updateAuthenticationButton(isEnabled: true, backgroundColor: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), titleColor: .white)
+        }
+        else{
+            signUpButton.updateAuthenticationButton(isEnabled: false, backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5), titleColor: UIColor(white: 1, alpha: 0.67))
+        }
+    }
+    
     
     // MARK: - Actions
     
@@ -101,21 +119,13 @@ class RegistrationController: BaseViewController<RegistrationViewModel> {
     @objc  func textDidChange(sender: UITextField){
         
         switch sender {
-        case emailTextField: viewModel?.isEmailValidated = sender.text!.validateEmail()
-        case passwordTextField: viewModel?.isPasswordValidated = sender.text!.validatePassword()
-        case fullnameTextField: viewModel?.isFullnameValidated = sender.text!.isEmpty == false
-        case usernameTextField: viewModel?.isUsernameValidated = sender.text!.isEmpty == false
+        case emailTextField: viewModel?.validateEmail(text: sender.text!)
+        case passwordTextField: viewModel?.validatePassword(text: sender.text!)
+        case fullnameTextField: viewModel?.validateFullname(text: sender.text!)
+        case usernameTextField: viewModel?.validateUsername(text: sender.text!)
         default: break
-            
         }
-        
-        
-        if (viewModel!.formIsValid) {
-            signUpButton.updateAuthenticationButton(isEnabled: true, backgroundColor: #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), titleColor: .white)
-        }
-        else{
-            signUpButton.updateAuthenticationButton(isEnabled: false, backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5), titleColor: UIColor(white: 1, alpha: 0.67))
-        }
+        updateButtonState()
     }
     
     @objc func selectProfilePhoto(){
@@ -133,33 +143,38 @@ class RegistrationController: BaseViewController<RegistrationViewModel> {
         guard let username = usernameTextField.text else { return }
         guard let profileImage = self.profileImage else { return }
         
-        viewModel?.requestModel  = RegistrationRequestPresentationModel(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage.pngData()!
+        let data = RegistrationRequestUiModel(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage.jpegData(compressionQuality: 0.75)!
         )
-        signUpUser()
+        signUpUser(model: data)
     }
     
-    func signUpUser() {
+    func signUpUser(model: RegistrationRequestUiModel) {
+        let requestModel = registrationRequestUiToPresentationMapper.map(model: model)
+        
         if(viewModel != nil) {
             self.viewModel!.isLoading = true
             if(viewModel!.isLoading) {
                 view.showLoader()
             }
             
-            self.viewModel!.registerUser()?.receive(on: DispatchQueue.main).sink( receiveCompletion: {[weak self] completion in
+            self.viewModel!.registerUser(requestModel: requestModel)?.receive(on: DispatchQueue.main).sink( receiveCompletion: {[weak self] completion in
                 self?.viewModel?.isLoading = false
                 self?.view.hideLoader()
                 
-            }, receiveValue: {[weak self] response in
-                let res = response as? Bool
-                let controller = MainTabController()
+                switch completion {
+                case .finished:
+                    print("Finished calling)")
+                case .failure(let error):
+                    print("Error calling \(error)")
+                    self?.showAlert(title: "Warning".localizedLowercase, message: error.localizedDescription){}
+                }
                 
+            }, receiveValue: {[weak self] response in
                 if(response as? Bool ?? true) {
-                    self?.showAlert(title: "Success".localizedLowercase, message: "Registration Successful", completion: {[weak self] action in
+                    self?.showAlert(title: "Success".localizedLowercase, message: "Registration Successful"){
                         self?.dismiss(animated: true)
-                    })                }
-                self?.showAlert(title: "Warning".localizedLowercase, message: res?.description.localizedLowercase ?? "An error occured", completion: {[weak self] action in
-                    self?.dismiss(animated: true)
-                })
+                    }
+                }
             }).store(in: &observer)
         }
         
@@ -181,7 +196,7 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 2
         plusPhotoButton.setImage(selectedImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        
+        updateButtonState()
         self.dismiss(animated: true, completion: nil)
     }
 }

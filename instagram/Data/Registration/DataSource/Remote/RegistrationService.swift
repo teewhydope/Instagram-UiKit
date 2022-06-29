@@ -13,7 +13,7 @@ struct RegistrationService {
         
         guard let profileImage = UIImage(data: credentials.profileImage) else { return }
         
-        ImageUploader.uploadImage(image: profileImage) { imageUrl in
+        ImageUploader.uploadImage(image: profileImage) { imageUrl, _ in
             Auth.auth().createUser(withEmail: credentials.email, password: credentials.password){
                 (result, error) in
                 

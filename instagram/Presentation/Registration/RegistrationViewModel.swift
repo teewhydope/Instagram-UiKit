@@ -7,17 +7,18 @@
 
 import Foundation
 import Combine
+import UIKit
 
 public class RegistrationViewModel : BaseViewModel {
     var isEmailValidated = false
     var isPasswordValidated = false
     var isFullnameValidated = false
     var isUsernameValidated = false
-    public var requestModel: RegistrationRequestPresentationModel?
+    var isProfileImageSelected: UIImage?
     private let registrationRequestPresentationToDomainMapper: RegistrationRequestPresentationToDomainMapper
     
     var formIsValid: Bool {
-        return isEmailValidated && isPasswordValidated && isFullnameValidated && isUsernameValidated
+        return isEmailValidated && isPasswordValidated && isFullnameValidated && isUsernameValidated && isProfileImageSelected != nil
     }
     
     
@@ -26,17 +27,51 @@ public class RegistrationViewModel : BaseViewModel {
         super.init(useCase: nil)
     }
     
-    func registerUser() -> Future<Any, Error>? {
-        let repository = RegistrationRepositoryImpl(remoteDataSource: RegistrationRemoteDataSource(service: RegistrationService(), registrationRequestDataToApiMapper: RegistrationRequestDataToApiMapper()), registrationRequestDomainToDataMapper: RegistrationRequestDomainToDataMapper())
-        
-        let registerUserUseCase = RegisterUserUseCase(repository: repository, requestModel: registrationRequestPresentationToDomainMapper.map(model: requestModel!))
-        
-        let request = registrationRequestPresentationToDomainMapper.map(model: requestModel!)
+    func registerUser(requestModel: RegistrationRequestPresentationModel) -> Future<Any, Error>? {
+        let registerUserUseCase = RegisterUserUseCase(repository: RegistrationRepositoryImpl(), requestModel: registrationRequestPresentationToDomainMapper.map(model: requestModel))
         
         self.isLoading = true
         self.showError = false
-        
-        registerUserUseCase.requestModel = request
         return registerUserUseCase.start()
+    }
+    
+    func validateEmail(text: String?) {
+        guard let text = text, !text.isEmpty else {
+            return
+        }
+        
+        if !text.validateEmail()  {
+            return
+        }
+        
+        isEmailValidated = true
+    }
+    
+    func validatePassword(text: String?) {
+        guard let text = text, !text.isEmpty else {
+            return
+        }
+        
+        if !text.validatePassword()  {
+            return
+        }
+        
+        isPasswordValidated = true
+    }
+    
+    func validateFullname(text: String?) {
+        guard let text = text, !text.isEmpty else {
+            return
+        }
+        
+        isFullnameValidated = true
+    }
+    
+    func validateUsername(text: String?) {
+        guard let text = text, !text.isEmpty else {
+            return
+        }
+        
+        isUsernameValidated = true
     }
 }

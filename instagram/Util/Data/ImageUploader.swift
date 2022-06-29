@@ -9,7 +9,7 @@ import FirebaseStorage
 import UIKit
 
 struct ImageUploader {
-    static func uploadImage(image: UIImage, completion: @escaping(String) -> Void){
+    static func uploadImage(image: UIImage, completion: @escaping(String?, Error?) -> Void){
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let filename = NSUUID().uuidString
         let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
@@ -17,12 +17,13 @@ struct ImageUploader {
         ref.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {
                 print("DEBUG: Failed to upload image \(error.localizedDescription)")
+                completion(nil, error)
                 return
             }
             
             ref.downloadURL { (url, error) in
                 guard let imageUrl = url?.absoluteString else { return }
-                completion(imageUrl)
+                completion(imageUrl, error)
             }
         }
     }
